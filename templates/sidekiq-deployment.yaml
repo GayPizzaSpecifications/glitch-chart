@@ -40,6 +40,8 @@ spec:
           - pull
           - -q
           - push
+          - -q
+          - scheduler
         env:
 {{ include "productonEnvironment" . | indent 8 }}
         resources:
