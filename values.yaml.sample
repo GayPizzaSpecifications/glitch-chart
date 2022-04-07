@@ -26,19 +26,10 @@ env:
   # cloudfrontHost: "dummy"
   # streamingApiBaseUrl: "dummy"
 
-httpd:
-  name: assets
-  servicePort: 80
-  containerPort: 80
-  resources:
-    requests:
-      memory: 32Mi
-      cpu: 50m
-
 web:
   name: web
-  image: tootsuite/mastodon
-  imageTag: v3.3.0
+  image: ghcr.io/glitch-soc/mastodon
+  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
   imagePullPolicy: IfNotPresent
   servicePort: 80
   containerPort: 3000
@@ -62,8 +53,8 @@ web:
       cpu: 100m
 streaming:
   name: streaming
-  image: tootsuite/mastodon
-  imageTag: v3.3.0
+  image: ghcr.io/glitch-soc/mastodon
+  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
   imagePullPolicy: IfNotPresent
   servicePort: 4000
   containerPort: 4000
@@ -74,17 +65,10 @@ streaming:
       cpu: 100m
 sidekiq:
   name: sidekiq
-  image: tootsuite/mastodon
-  imageTag: v3.3.0
+  image: ghcr.io/glitch-soc/mastodon
+  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
   imagePullPolicy: IfNotPresent
-  defaultQparallelism: 2
-  pullQparallelism: 5
-  pushQparallelism: 2
-  mailersQparallelism: 2
-  defaultQreplicas: 1
-  pullQreplicas: 1
-  pushQreplicas: 1
-  mailersQreplicas: 1
+  parallelism: 16
   resources:
     requests:
       memory: 256Mi
@@ -92,13 +76,13 @@ sidekiq:
 redis:
   name: redis
   image: redis
-  imageTag: 6-alpine
+  imageTag: 6.2.6-alpine
   imagePullPolicy: IfNotPresent
   servicePort: 6379
   containerPort: 6379
   # You need to create PV beforehead.
   persistentVolume:
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 8Gi
   resources:
     requests:
@@ -107,7 +91,7 @@ redis:
 postgres:
   name: postgres
   image: postgres
-  imageTag: "9.6.2"
+  imageTag: 14.2-alpine
   imagePullPolicy: IfNotPresent
   containerPort: 5432
   servicePort: 5432
@@ -118,14 +102,14 @@ postgres:
     pgdata: "/var/lib/postgresql/data/pgdata"
   # You need to create PV beforehead.
   persistentVolume:
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     size: 8Gi
   resources:
     requests:
       memory: 256Mi
       cpu: 100m
   metrics:
-    enabled: true
+    enabled: false
     image: "wrouesnel/postgres_exporter"
     imageTag: "v0.1.1"
     imagePullPolicy: IfNotPresent
@@ -133,3 +117,11 @@ postgres:
       requests:
         memory: 256Mi
         cpu: 100m
+
+secrets:
+  postgresPassword: dummy
+  redisPassword: dummy
+  paperclipSecret: dummy
+  secretKeyBase: dummy
+  otpSecret: dummy
+  smtpPassword: dummy

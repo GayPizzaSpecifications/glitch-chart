@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: {{ template "name" . }}-{{ .Values.web.name }}
-        image: "{{ .Values.web.image }}:{{ .Values.web.imageTag }}"
+        image: "{{ .Values.web.image }}@{{ .Values.web.imageTag }}"
         imagePullPolicy: {{ .Values.web.imagePullPolicy | quote }}
         command:
           - bundle
@@ -36,7 +36,7 @@ spec:
           - -b
           - 0.0.0.0
         env:
-{{ include "productonEnvironment" . | indent 8 }}
+{{ include "productionEnvironment" . | indent 8 }}
         ports:
         - name: web
           containerPort: {{ .Values.web.containerPort }}

@@ -1,7 +1,7 @@
 {{/*
 Production environment for mastodon
 */}}
-{{- define "productonEnvironment" -}}
+{{- define "productionEnvironment" -}}
 - name: REDIS_HOST
   value: "{{ template "redis.fullname" . }}"
 - name: REDIS_PORT

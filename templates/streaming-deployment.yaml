@@ -24,14 +24,14 @@ spec:
     spec:
       containers:
       - name: {{ template "name" . }}-{{ .Values.streaming.name }}
-        image: "{{ .Values.streaming.image }}:{{ .Values.streaming.imageTag }}"
+        image: "{{ .Values.streaming.image }}@{{ .Values.streaming.imageTag }}"
         imagePullPolicy: {{ .Values.streaming.imagePullPolicy | quote }}
         command:
           - npm
           - run
           - start
         env:
-{{ include "productonEnvironment" . | indent 8 }}
+{{ include "productionEnvironment" . | indent 8 }}
         ports:
         - name: streaming
           containerPort: {{ .Values.streaming.containerPort }}

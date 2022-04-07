@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: {{ template "name" . }}-{{ .Values.sidekiq.name }}
-        image: "{{ .Values.sidekiq.image }}:{{ .Values.sidekiq.imageTag }}"
+        image: "{{ .Values.sidekiq.image }}@{{ .Values.sidekiq.imageTag }}"
         imagePullPolicy: {{ .Values.sidekiq.imagePullPolicy | quote }}
         command:
           - bundle
@@ -32,18 +32,8 @@ spec:
           - sidekiq
           - -c
           - "{{ .Values.sidekiq.parallelism }}"
-          - -q
-          - default
-          - -q
-          - mailers
-          - -q
-          - pull
-          - -q
-          - push
-          - -q
-          - scheduler
         env:
-{{ include "productonEnvironment" . | indent 8 }}
+{{ include "productionEnvironment" . | indent 8 }}
         resources:
 {{ toYaml .Values.sidekiq.resources | indent 10 }}
         volumeMounts:
