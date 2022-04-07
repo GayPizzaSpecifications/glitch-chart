@@ -1,12 +1,9 @@
 apiVersion: v2
-description: A Helm chart for Mastodon
-name: mastodon
-sources:
-- https://github.com/timwalls/mastodon-chart
-- https://github.com/tootsuite/mastodon
+description: A Helm chart for Glitch
+name: glitch
 maintainers:
-- email: tim.walls@snowgoons.com
-  name: timwalls
-version: 3.3.0
-appVersion: 3.3.0
+- email: l@gorence.io
+  name: lgorence
+version: 1.0.0
+appVersion: 1.0.0
 engine: gotpl
