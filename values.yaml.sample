@@ -40,6 +40,7 @@ web:
   maintenanceHour: 3
   ingress:
     host: SET_YOUR_DOMAIN
+    clusterIssuer: issuerName
   persistentVolume:
     system:
       accessMode: ReadWriteMany

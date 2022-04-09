@@ -4,6 +4,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: {{ .Values.web.ingress.clusterIssuer }}
+    nginx.ingress.kubernetes.io/proxy-body-size: 25m
   labels:
     app: {{ template "fullname" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -31,6 +33,6 @@ spec:
             port:
               number: {{ .Values.streaming.servicePort }}
   tls:
-  - secretName: {{ template "name" . }}-lego-secret
+  - secretName: {{ template "name" . }}-tls
     hosts:
     - {{ .Values.web.ingress.host }}
