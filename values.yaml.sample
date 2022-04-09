@@ -28,7 +28,7 @@ env:
 web:
   name: web
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
+  imageTag: sha256:2497c3d524713a5783e9d2b2ee934e6918555c69021ddba9cc4422d4fa1fb422
   imagePullPolicy: IfNotPresent
   servicePort: 80
   containerPort: 3000
@@ -54,7 +54,7 @@ web:
 streaming:
   name: streaming
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
+  imageTag: sha256:2497c3d524713a5783e9d2b2ee934e6918555c69021ddba9cc4422d4fa1fb422
   imagePullPolicy: IfNotPresent
   servicePort: 4000
   containerPort: 4000
@@ -66,7 +66,7 @@ streaming:
 sidekiq:
   name: sidekiq
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:f9896eeaf5dd199990bec151ab2dab5cf9322bc46a6b8c1a6263bc277ed074b0
+  imageTag: sha256:2497c3d524713a5783e9d2b2ee934e6918555c69021ddba9cc4422d4fa1fb422
   imagePullPolicy: IfNotPresent
   parallelism: 16
   resources:
