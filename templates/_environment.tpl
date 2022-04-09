@@ -60,7 +60,7 @@ Production environment for mastodon
       key: smtpPassword
 - name: SMTP_FROM_ADDRESS
   value: "{{ .Values.env.smtp.address }}"
-{{- if .Values.env.assets -}}
+{{- if .Values.env.assets }}
 - name: PAPERCLIP_ROOT_PATH
   value: "{{ .Values.env.assets.paperclipRootPath }}"
 - name: PAPERCLIP_ROOT_URL
@@ -68,7 +68,7 @@ Production environment for mastodon
 - name: CDN_HOST
   value: "{{ .Values.env.assets.cdnHost }}"
 {{- end }}
-{{- if .Values.env.s3 -}}
+{{- if .Values.env.s3 }}
 - name: S3_ENABLED
   value: "{{ .Values.env.s3.enabled }}"
 - name: S3_BUCKET
@@ -83,10 +83,8 @@ Production environment for mastodon
   value: "{{ .Values.env.s3.protocol }}"
 - name: S3_HOSTNAME
   value: "{{ .Values.env.s3.hostname }}"
-- name: S3_CLOUDFRONT_HOST
-  value: "{{ .Values.env.s3.cloudfrontHost }}"
-- name: STREAMING_API_BASE_URL
-  value: "{{ .Values.env.s3.streamingApiBaseUrl }}"
+- name: S3_ENDPOINT
+  value: "{{ .Values.env.s3.endpoint }}"
 {{- end }}
 - name: SECRET_KEY_BASE
   valueFrom:
