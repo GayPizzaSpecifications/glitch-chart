@@ -86,6 +86,12 @@ Production environment for mastodon
 - name: S3_ENDPOINT
   value: "{{ .Values.env.s3.endpoint }}"
 {{- end }}
+{{- if .Values.env.vapid }}
+- name: VAPID_PRIVATE_KEY
+  value: "{{ .Values.env.vapid.privateKey }}"
+- name: VAPID_PUBLIC_KEY
+  value: "{{ .Values.env.vapid.publicKey }}"
+{{- end }}
 - name: SECRET_KEY_BASE
   valueFrom:
     secretKeyRef:
