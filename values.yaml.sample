@@ -44,6 +44,7 @@ web:
     host: SET_YOUR_DOMAIN
     clusterIssuer: issuerName
   persistentVolume:
+    enabled: true
     system:
       accessMode: ReadWriteMany
       size: 8Gi

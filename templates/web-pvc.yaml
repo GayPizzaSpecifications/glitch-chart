@@ -1,3 +1,4 @@
+{{- if .Values.web.persistentVolume.enabled}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -31,3 +32,4 @@ spec:
   resources:
     requests:
       storage: "{{ .Values.web.persistentVolume.assets.size }}"
+{{- end}}

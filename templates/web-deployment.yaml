@@ -42,6 +42,7 @@ spec:
           containerPort: {{ .Values.web.containerPort }}
         resources:
 {{ toYaml .Values.web.resources | indent 10 }}
+{{- if .Values.web.persistentVolume.enabled}}
         volumeMounts:
         - name: assets
           mountPath: /mastodon/public/assets
@@ -54,3 +55,4 @@ spec:
       - name: assets
         persistentVolumeClaim:
           claimName: {{ template "web.fullname" . }}-assets
+{{- end}}

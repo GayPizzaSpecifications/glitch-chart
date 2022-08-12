@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "redis.fullname" . }}
   labels:
@@ -9,12 +9,11 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  serviceName: {{ template "redis.fullname" . }}-sts
   replicas: 1
   selector:
     matchLabels:
       app: {{ template "name" . }}
-  strategy:
-    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -40,7 +39,7 @@ spec:
 {{ toYaml .Values.redis.resources | indent 10 }}
         volumeMounts:
         - name: redis-data
-          mountPath: /bitnami/redisg
+          mountPath: /data
       volumes:
       - name: redis-data
         persistentVolumeClaim:

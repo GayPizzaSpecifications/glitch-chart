@@ -31,6 +31,7 @@ spec:
           - "bundle exec rails db:migrate && bundle exec rails assets:precompile"
         env:
 {{ include "productionEnvironment" . | indent 8 }}
+{{- if .Values.web.persistentVolume.enabled}}
         volumeMounts:
         - name: assets
           mountPath: /mastodon/public/assets
@@ -38,3 +39,4 @@ spec:
       - name: assets
         persistentVolumeClaim:
           claimName: {{ template "web.fullname" . }}-assets
+{{- end}}

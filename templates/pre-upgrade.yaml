@@ -33,6 +33,7 @@ spec:
         - name: SKIP_POST_DEPLOYMENT_MIGRATIONS
           value: "true"
 {{ include "productionEnvironment" . | indent 8 }}
+{{- if .Values.web.persistentVolume.enabled}}
         volumeMounts:
         - name: assets
           mountPath: /mastodon/public/assets
@@ -40,3 +41,4 @@ spec:
       - name: assets
         persistentVolumeClaim:
           claimName: {{ template "web.fullname" . }}-assets
+{{- end}}

@@ -36,6 +36,7 @@ spec:
 {{ include "productionEnvironment" . | indent 8 }}
         resources:
 {{ toYaml .Values.sidekiq.resources | indent 10 }}
+{{- if .Values.web.persistentVolume.enabled}}
         volumeMounts:
         - name: assets
           mountPath: /mastodon/public/assets
@@ -48,3 +49,4 @@ spec:
       - name: system
         persistentVolumeClaim:
           claimName: {{ template "web.fullname" . }}-system
+{{- end}}
