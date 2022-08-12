@@ -31,7 +31,7 @@ env:
 web:
   name: web
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:28e5d2f7105ac79e23b4eef5912745e68e38eb39c45fb4a282e6c80203898770
+  imageTag: sha256:408f6b7b91ae89023a54f79aa21ffb47329291967c540e6ec0c52e2ea119a976
   imagePullPolicy: IfNotPresent
   servicePort: 80
   containerPort: 3000
@@ -58,7 +58,7 @@ web:
 streaming:
   name: streaming
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:28e5d2f7105ac79e23b4eef5912745e68e38eb39c45fb4a282e6c80203898770
+  imageTag: sha256:408f6b7b91ae89023a54f79aa21ffb47329291967c540e6ec0c52e2ea119a976
   imagePullPolicy: IfNotPresent
   servicePort: 4000
   containerPort: 4000
@@ -70,7 +70,7 @@ streaming:
 sidekiq:
   name: sidekiq
   image: ghcr.io/glitch-soc/mastodon
-  imageTag: sha256:28e5d2f7105ac79e23b4eef5912745e68e38eb39c45fb4a282e6c80203898770
+  imageTag: sha256:408f6b7b91ae89023a54f79aa21ffb47329291967c540e6ec0c52e2ea119a976
   imagePullPolicy: IfNotPresent
   parallelism: 16
   resources:
@@ -80,7 +80,7 @@ sidekiq:
 redis:
   name: redis
   image: redis
-  imageTag: 6.2.6-alpine
+  imageTag: 6.2.7-alpine
   imagePullPolicy: IfNotPresent
   servicePort: 6379
   containerPort: 6379
@@ -95,7 +95,7 @@ redis:
 postgres:
   name: postgres
   image: postgres
-  imageTag: 14.2-alpine
+  imageTag: 14.5-alpine
   imagePullPolicy: IfNotPresent
   containerPort: 5432
   servicePort: 5432
