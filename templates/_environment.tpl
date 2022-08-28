@@ -25,6 +25,20 @@ Production environment for mastodon
   value: "{{ .Values.web.concurrency }}"
 - name: MAX_THREADS
   value: "{{ .Values.web.maxThreads }}"
+- name: MAX_TOOT_CHARS
+  value: "{{ .Values.web.maxPostSize }}"
+- name: MAX_PINNED_TOOTS
+  value: "{{ .Values.web.maxPinnedPosts }}"
+- name: MAX_BIO_CHARS
+  value: "{{ .Values.web.maxBioSize }}"
+- name: MAX_PROFILE_FIELDS
+  value: "{{ .Values.web.maxProfileFields }}"
+- name: MAX_DISPLAY_NAME_CHARS
+  value: "{{ .Values.web.maxDisplayNameSize }}"
+- name: MAX_POLL_OPTIONS
+  value: "{{ .Values.web.maxPollOptions }}"
+- name: MAX_POLL_OPTION_CHARS
+  value: "{{ .Values.web.maxPollOptionSize }}"
 - name: STREAMING_CLUSTER_NUM
   value: "{{ .Values.streaming.clusterSize }}"
 - name: DB_PORT
@@ -108,4 +122,3 @@ Production environment for mastodon
       name: {{ template "web.fullname" . }}
       key: paperclipSecret
 {{- end -}}
-
